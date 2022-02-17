@@ -7,6 +7,12 @@
   font-family: "Ubuntu", sans-serif;
 }
 
+a,
+li {
+  text-decoration: none;
+  color: black;
+}
+
 input {
   appearance: none;
   border-radius: 0;

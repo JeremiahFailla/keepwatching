@@ -10,24 +10,19 @@ const WrongURL = () => {
 
   useEffect(() => {
     const timer = setInterval(() => setTime((t) => t - 1), 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
-  useEffect(() => {
     let home, login;
 
     if (user) {
       home = setTimeout(() => {
         navigate("/home", { replace: true });
-      }, 4000);
+      }, 5000);
     } else {
       login = setTimeout(() => {
         navigate("/", { replace: true });
-      }, 4000);
+      }, 5000);
     }
     return () => {
+      clearInterval(timer);
       clearTimeout(home);
       clearTimeout(login);
     };

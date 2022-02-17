@@ -73,6 +73,12 @@ const Login = () => {
       });
   };
 
+  useEffect(() => {
+    if (newUser) {
+      navigate("/home", { replace: true });
+    }
+  }, [newUser]);
+
   return (
     <Styled.Container>
       <Styled.Logo>KeepWatching</Styled.Logo>
