@@ -57,3 +57,57 @@ export const SubmitButton = styled.button`
     background: #0080ff;
   }
 `;
+
+// ----------- Watch List Tab --------------------
+
+export const List = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 250px);
+  gap: 15px;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #c0daec;
+  }
+`;
+
+export const Image = styled.img`
+  width: 70px;
+  height: 100px;
+  margin-right: 20px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ContentTitle = styled.p`
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+`;
+
+export const RemoveButton = styled.button`
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  padding: 5px 10px;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+
+  &:hover {
+    background: #ff0000;
+    color: black;
+    border-radius: 5px;
+  }
+`;

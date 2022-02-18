@@ -6,7 +6,6 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
   browserSessionPersistence,
-  signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,16 +62,6 @@ const Login = () => {
     navigate("/home", { replace: true });
   };
 
-  const signOutUser = () => {
-    signOut(auth)
-      .then(() => {
-        dispatch({ type: "SET_USER", user: null });
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
   useEffect(() => {
     if (newUser) {
       navigate("/home", { replace: true });
@@ -124,8 +113,6 @@ const Login = () => {
         </Styled.Card>
       )}
       {showRegisterAccount && <Register showLogin={showRegisterPage} />}
-      {newUser?.displayName ? newUser?.displayName : "Guest"}
-      <button onClick={signOutUser}>Sign Out</button>
     </Styled.Container>
   );
 };

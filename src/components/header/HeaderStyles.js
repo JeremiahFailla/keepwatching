@@ -41,7 +41,7 @@ export const SearchButton = styled.button`
   padding: 0 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     background: #b08cfd;
@@ -54,7 +54,6 @@ export const PersonContainer = styled(Link)`
   align-items: center;
   /* flex-direction: column; */
   margin-right: 2rem;
-  transition: all 0.4s ease;
 
   &:hover > * {
     color: #b08cfd;
@@ -64,11 +63,13 @@ export const PersonContainer = styled(Link)`
 export const PersonIcon = styled(BsFillPersonFill)`
   color: #fd7702;
   font-size: 2.5rem;
+  transition: all 0.3s ease;
 `;
 
 export const PersonName = styled.p`
   font-size: 1rem;
   color: #fd7702;
+  transition: all 0.3s ease;
 `;
 
 export const SignOutButton = styled.button`
@@ -79,7 +80,7 @@ export const SignOutButton = styled.button`
   background: transparent;
   border: 2px solid #fd7702;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     color: #b08cfd;
