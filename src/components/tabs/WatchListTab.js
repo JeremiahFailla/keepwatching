@@ -51,7 +51,7 @@ const WatchListTab = () => {
       <Styled.Title>Watch List</Styled.Title>
       <Styled.List>
         {movies.map((movie) => (
-          <Styled.Content>
+          <Styled.Content key={Math.random() * 10000}>
             <Styled.Image src={movie.image.url} />
             <Styled.Container>
               <Styled.ContentTitle>{movie.title}</Styled.ContentTitle>

@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { BsFillPersonFill } from "react-icons/bs";
 
 export const UserCardContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 770px);
   justify-content: center;
   align-items: center;
   margin-top: 120px;
+  padding: 1rem;
 `;
 
 export const UserCard = styled.main`
@@ -30,6 +32,7 @@ export const Tab = styled.p`
   border-top: 1px solid #003f7d;
   padding: 15px 5px;
   cursor: pointer;
+  white-space: nowrap;
 
   &:hover {
     color: #006ad3;

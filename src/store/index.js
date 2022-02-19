@@ -2,6 +2,7 @@ import { createStore } from "redux";
 
 const intialState = {
   user: null,
+  userFirebaseData: {},
 };
 
 const reducer = (state = intialState, action) => {
@@ -18,6 +19,11 @@ const reducer = (state = intialState, action) => {
           ...state.user,
           displayName: action.displayName,
         },
+      };
+    case "SET_USER_FIREBASE_DATA":
+      return {
+        ...state,
+        userFirebaseData: action.data,
       };
     default:
       return state;

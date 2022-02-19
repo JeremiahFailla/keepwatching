@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import * as Styled from "./LoginStyles";
 import Register from "../register/Register";
 import { useNavigate } from "react-router-dom";
@@ -63,8 +63,9 @@ const Login = () => {
   };
 
   useEffect(() => {
+    console.log(newUser);
     if (newUser) {
-      navigate("/home", { replace: true });
+      // navigate("/home", { replace: true });
     }
   }, [newUser]);
 
