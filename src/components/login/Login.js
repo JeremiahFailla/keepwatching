@@ -65,7 +65,7 @@ const Login = () => {
   useEffect(() => {
     console.log(newUser);
     if (newUser) {
-      // navigate("/home", { replace: true });
+      navigate("/home", { replace: true });
     }
   }, [newUser]);
 

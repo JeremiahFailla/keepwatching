@@ -9,6 +9,7 @@ import Home from "./pages/HomePage";
 import Login from "./pages/LoginPage";
 import Account from "./pages/AccountPage";
 import ErrorPage from "./pages/ErrorPage";
+import SpecificContentPage from "./pages/SpecificContentPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/content/:title" element={<SpecificContentPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

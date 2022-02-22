@@ -3,6 +3,7 @@ import { createStore } from "redux";
 const intialState = {
   user: null,
   userFirebaseData: {},
+  selectedContent: {},
 };
 
 const reducer = (state = intialState, action) => {
@@ -24,6 +25,11 @@ const reducer = (state = intialState, action) => {
       return {
         ...state,
         userFirebaseData: action.data,
+      };
+    case "SET_SELECTED_CONTENT":
+      return {
+        ...state,
+        selectedContent: action.content,
       };
     default:
       return state;

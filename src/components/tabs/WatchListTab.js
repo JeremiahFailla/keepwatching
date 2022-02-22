@@ -16,6 +16,24 @@ const WatchListTab = () => {
       title: "Game of Thrones",
       titleType: "tvSeries",
       year: 2011,
+      principals: [
+        {
+          id: "/name/nm3592338/",
+          legacyNameText: "Clarke, Emilia",
+          name: "Emilia Clarke",
+          category: "actress",
+          characters: ["Daenerys Targaryen"],
+          endYear: 2019,
+          episodeCount: 62,
+          roles: [
+            {
+              character: "Daenerys Targaryen",
+              characterId: "/character/ch0158597/",
+            },
+          ],
+          startYear: 2011,
+        },
+      ],
     },
     {
       id: "/title/tt0944947/",
@@ -30,6 +48,24 @@ const WatchListTab = () => {
       title: "Game of Thrones",
       titleType: "tvSeries",
       year: 2011,
+      principals: [
+        {
+          id: "/name/nm3592338/",
+          legacyNameText: "Clarke, Emilia",
+          name: "Emilia Clarke",
+          category: "actress",
+          characters: ["Daenerys Targaryen"],
+          endYear: 2019,
+          episodeCount: 62,
+          roles: [
+            {
+              character: "Daenerys Targaryen",
+              characterId: "/character/ch0158597/",
+            },
+          ],
+          startYear: 2011,
+        },
+      ],
     },
     {
       id: "/title/tt0944947/",
@@ -44,6 +80,24 @@ const WatchListTab = () => {
       title: "Game of Thrones",
       titleType: "tvSeries",
       year: 2011,
+      principals: [
+        {
+          id: "/name/nm3592338/",
+          legacyNameText: "Clarke, Emilia",
+          name: "Emilia Clarke",
+          category: "actress",
+          characters: ["Daenerys Targaryen"],
+          endYear: 2019,
+          episodeCount: 62,
+          roles: [
+            {
+              character: "Daenerys Targaryen",
+              characterId: "/character/ch0158597/",
+            },
+          ],
+          startYear: 2011,
+        },
+      ],
     },
   ]);
   return (
