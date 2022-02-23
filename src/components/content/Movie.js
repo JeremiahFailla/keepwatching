@@ -37,7 +37,9 @@ const Movie = (props) => {
             </Styled.ColumContainer>
             <Styled.ColumContainer>
               <Styled.DataTitle>Run Time</Styled.DataTitle>
-              <Styled.Data>{props.item.runningTimeInMinutes}</Styled.Data>
+              <Styled.Data>
+                {props.item.runningTimeInMinutes} Minutes
+              </Styled.Data>
             </Styled.ColumContainer>
           </Styled.DataContainer>
           <Styled.DataContainer>
@@ -45,14 +47,16 @@ const Movie = (props) => {
               <Styled.DataTitle>Release Year</Styled.DataTitle>
               <Styled.Data>{props.item.year}</Styled.Data>
             </Styled.ColumContainer>
-            <Styled.ColumContainer>
-              <Styled.DataTitle>Cast Stars</Styled.DataTitle>
-              {props.item.principals.map((char) => (
-                <Styled.Data key={Math.random() * 2000}>
-                  {char.name}
-                </Styled.Data>
-              ))}
-            </Styled.ColumContainer>
+            {props.item.principals && (
+              <Styled.ColumContainer>
+                <Styled.DataTitle>Cast Stars</Styled.DataTitle>
+                {props.item.principals.map((char) => (
+                  <Styled.Data key={Math.random() * 2000}>
+                    {char.name}
+                  </Styled.Data>
+                ))}
+              </Styled.ColumContainer>
+            )}
           </Styled.DataContainer>
         </div>
       </Styled.Container>

@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 
 export const Header = styled.header`
   width: 100%;
-  margin: 0 auto;
 `;
 export const Nav = styled.nav`
   display: flex;
   padding: 1rem;
   align-items: center;
+  max-width: 1800px;
+  margin: 0 auto;
 `;
 
 export const Logo = styled(Link)`
+  /* font-size: clamp(1.5rem, 2rem, 3rem); */
   font-size: 2rem;
   color: white;
 `;
@@ -20,6 +22,8 @@ export const Logo = styled(Link)`
 export const SearchForm = styled.form`
   display: flex;
   margin: 0 auto;
+  min-width: 0;
+  padding: 0 25px;
 `;
 
 export const SearchInput = styled.input`
@@ -30,6 +34,7 @@ export const SearchInput = styled.input`
   padding: 10px 8px;
   font-size: 1.3rem;
   color: white;
+  min-width: 0;
 `;
 
 export const SearchButton = styled.button`
@@ -81,6 +86,7 @@ export const SignOutButton = styled.button`
   border: 2px solid #fd7702;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 
   &:hover {
     color: #b08cfd;

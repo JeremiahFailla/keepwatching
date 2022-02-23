@@ -1,17 +1,16 @@
 import React from "react";
+import { Footer } from "../components/footer/Footer";
 import Header from "../components/header/Header";
 import UserCard from "../components/user/UserCard";
 
 const Account = () => {
   return (
     <div
-      style={{
-        maxWidth: "1900px",
-        margin: "0 auto",
-      }}
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <Header />
       <UserCard />
+      <Footer />
     </div>
   );
 };

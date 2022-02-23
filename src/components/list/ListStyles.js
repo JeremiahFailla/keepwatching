@@ -6,6 +6,8 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 2rem auto;
   border-radius: 2px;
+  /* position: relative;
+  bottom: 0; */
 `;
 
 export const Title = styled.span`
@@ -20,6 +22,7 @@ export const More = styled.span`
   color: #fd7702;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     border-color: #fd7702;

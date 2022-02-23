@@ -27,7 +27,7 @@ const Header = () => {
   const browse = (e) => {
     e.preventDefault();
 
-    // TODO: Do Search for movie/show Stuff
+    navigate(`/more/${searchInput.toLowerCase().replaceAll(" ", "-")}`);
   };
 
   return (

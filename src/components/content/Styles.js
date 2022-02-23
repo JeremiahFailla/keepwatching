@@ -6,7 +6,7 @@ export const Card = styled.div`
   border-radius: 5px;
   padding: 2rem;
   max-width: 1000px;
-  margin: 50px auto 20px;
+  margin: 50px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,7 +85,6 @@ export const DataContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
-  align-items: center;
   gap: 2rem;
   padding: 2rem 0;
 `;

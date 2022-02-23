@@ -10,6 +10,7 @@ import Login from "./pages/LoginPage";
 import Account from "./pages/AccountPage";
 import ErrorPage from "./pages/ErrorPage";
 import SpecificContentPage from "./pages/SpecificContentPage";
+import ViewMorePage from "./pages/ViewMorePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/account" element={<Account />} />
         <Route path="/content/:title" element={<SpecificContentPage />} />
+        <Route path="/more/:title" element={<ViewMorePage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

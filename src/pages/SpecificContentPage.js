@@ -4,6 +4,7 @@ import Header from "../components/header/Header";
 import { useParams } from "react-router-dom";
 import { TVShow } from "../components/content/TVShow";
 import Movie from "../components/content/Movie";
+import { Footer } from "../components/footer/Footer";
 
 const SpecificContentPage = () => {
   const item = useSelector((state) => state.selectedContent);
@@ -13,10 +14,13 @@ const SpecificContentPage = () => {
     console.log(item, params);
   }, [item, params]);
   return (
-    <div>
+    <div
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header />
       {item.titleType === "tvSeries" && <TVShow item={item} />}
       {item.titleType === "movie" && <Movie item={item} />}
+      <Footer />
     </div>
   );
 };

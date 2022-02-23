@@ -145,10 +145,14 @@ export const List = (props) => {
     navigate(`/content/${item.title.toLowerCase().replaceAll(" ", "-")}`);
   };
 
+  const viewMore = () => {
+    navigate(`/more/${props.title.toLowerCase().replaceAll(" ", "-")}`);
+  };
+
   return (
     <Styled.Container>
-      <Styled.Title>Sports</Styled.Title>
-      <Styled.More>View More</Styled.More>
+      <Styled.Title>{props.title}</Styled.Title>
+      <Styled.More onClick={viewMore}>View More</Styled.More>
       <Styled.CardsContainer>
         {movies.map((item) => {
           if (item.titleType === "movie" || item.titleType === "tvSeries") {

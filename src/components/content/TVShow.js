@@ -49,19 +49,23 @@ export const TVShow = (props) => {
             </Styled.ColumContainer>
             <Styled.ColumContainer>
               <Styled.DataTitle>Run Time</Styled.DataTitle>
-              <Styled.Data>{props.item.runningTimeInMinutes}</Styled.Data>
+              <Styled.Data>
+                {props.item.runningTimeInMinutes} Minutes
+              </Styled.Data>
             </Styled.ColumContainer>
           </Styled.DataContainer>
-          <div style={{ paddingTop: "2rem" }}>
-            <Styled.DataTitle>Cast Stars</Styled.DataTitle>
-            <Styled.CastContainer>
-              {props.item.principals.map((char) => (
-                <Styled.Data key={Math.random() * 2000}>
-                  {char.name}
-                </Styled.Data>
-              ))}
-            </Styled.CastContainer>
-          </div>
+          {props.item.principals && (
+            <div style={{ paddingTop: "2rem" }}>
+              <Styled.DataTitle>Cast Stars</Styled.DataTitle>
+              <Styled.CastContainer>
+                {props.item.principals.map((char) => (
+                  <Styled.Data key={Math.random() * 2000}>
+                    {char.name}
+                  </Styled.Data>
+                ))}
+              </Styled.CastContainer>
+            </div>
+          )}
         </div>
       </Styled.Container>
     </Styled.Card>
