@@ -28,7 +28,6 @@ const Register = ({ showLogin }) => {
       .then((userAccount) => {
         // Account created and Signed in
         const { user } = userAccount;
-        console.log(user);
         dispatch({ type: "SET_USER", user: user });
         return updateProfile(user, {
           displayName: displayName,
@@ -36,6 +35,7 @@ const Register = ({ showLogin }) => {
       })
       .then(() => {
         dispatch({ type: "SET_USER_DISPLAYNAME", displayName: displayName });
+        return true;
       })
       .catch((error) => {
         // error occured
@@ -51,7 +51,6 @@ const Register = ({ showLogin }) => {
         }
         return false;
       });
-    return true;
   };
 
   const createAccount = (e) => {
@@ -105,7 +104,7 @@ const Register = ({ showLogin }) => {
         />
         <Styled.Label htmlFor="email">Email</Styled.Label>
         <Styled.Input
-          type="email"
+          type="text"
           name="email"
           id="email"
           placeholder="Email Address"

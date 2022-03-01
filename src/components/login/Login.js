@@ -34,6 +34,7 @@ const Login = () => {
         // Signed in
         const { user } = userAccount;
         dispatch({ type: "SET_USER", user: user });
+        return true;
       })
       .catch((error) => {
         // error occured
@@ -45,18 +46,22 @@ const Login = () => {
         if (errorMessage === "Firebase: Error (auth/user-not-found).") {
           setError("Account Could not Be Found");
         }
+        if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+          setError("Invalid Email");
+        }
         setShowError(true);
         return false;
       });
-    return true;
   };
 
   const signIn = (e) => {
     e.preventDefault();
     setShowError(false);
 
+    const valid = validateLoginData();
+    console.log(valid);
     // validate login data
-    if (!validateLoginData()) return;
+    if (!valid) return;
 
     // Navigate to home page
     navigate("/home", { replace: true });
@@ -93,7 +98,7 @@ const Login = () => {
           <form onSubmit={signIn}>
             <Styled.Label htmlFor="email">Email</Styled.Label>
             <Styled.Input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="Email Address"

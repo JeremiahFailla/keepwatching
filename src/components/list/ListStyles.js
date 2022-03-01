@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #004a94;
-  padding: 0.8rem 1rem;
-  max-width: 1200px;
+  padding: 0.8rem 1.5rem;
+  /* max-width: 1220px; */
   margin: 2rem auto;
   border-radius: 2px;
-  /* position: relative;
-  bottom: 0; */
 `;
 
 export const Title = styled.span`
@@ -23,26 +21,6 @@ export const More = styled.span`
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
   cursor: pointer;
-
-  &:hover {
-    border-color: #fd7702;
-  }
-`;
-
-export const CardsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-`;
-
-export const Image = styled.img`
-  width: 150px;
-  height: 200px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  object-fit: cover;
-  transition: all 0.3s ease;
 
   &:hover {
     border-color: #fd7702;
