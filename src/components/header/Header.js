@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import * as Styled from "./HeaderStyles";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
 
 const Header = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [mobileNav, showMobileNav] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,6 +31,10 @@ const Header = () => {
     navigate(`/more/${searchInput.toLowerCase().replaceAll(" ", "-")}`);
   };
 
+  const showMobileNavHandler = () => {
+    showMobileNav(!mobileNav);
+  };
+
   return (
     <Styled.Header>
       <Styled.Nav>
@@ -42,6 +47,7 @@ const Header = () => {
           />
           <Styled.SearchButton>Browse</Styled.SearchButton>
         </Styled.SearchForm>
+
         <Styled.PersonContainer to="/account">
           <Styled.PersonName>Hello, {user?.displayName}</Styled.PersonName>
           <Styled.PersonIcon />
@@ -49,6 +55,19 @@ const Header = () => {
         <Styled.SignOutButton onClick={signOutUser}>
           Sign Out
         </Styled.SignOutButton>
+        <Styled.More onClick={showMobileNavHandler} />
+        {mobileNav && (
+          <React.Fragment>
+            <Styled.Backdrop onClick={showMobileNavHandler} />
+            <Styled.MobileNav>
+              <Styled.MobileName>Hello, {user?.displayName}</Styled.MobileName>
+              <Styled.MobileAccount to="/account">
+                Account Settings
+              </Styled.MobileAccount>
+              <Styled.MobileSignOutButton>Sign Out</Styled.MobileSignOutButton>
+            </Styled.MobileNav>
+          </React.Fragment>
+        )}
       </Styled.Nav>
     </Styled.Header>
   );

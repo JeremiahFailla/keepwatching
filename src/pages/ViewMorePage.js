@@ -3,8 +3,10 @@ import Header from "../components/header/Header";
 import { useParams } from "react-router-dom";
 import { SearchContent } from "../components/searchContent/SearchContent";
 import { Footer } from "../components/footer/Footer";
+import Spinner from "../components/spinner/Spinner";
 
 const ViewMorePage = () => {
+  const [loading, setLoading] = useState(true);
   const [content, setContent] = useState([]);
   const { title } = useParams();
 
@@ -23,7 +25,10 @@ const ViewMorePage = () => {
       }
     )
       .then((response) => response.json())
-      .then((data) => setContent(data.results))
+      .then((data) => {
+        setContent(data.results);
+        setLoading(false);
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -38,7 +43,8 @@ const ViewMorePage = () => {
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <Header />
-      <SearchContent content={content} />
+      {!loading && <SearchContent content={content} />}
+      {loading && <Spinner style={{ paddingTop: "200px", margin: "0 auto" }} />}
       <Footer />
     </div>
   );

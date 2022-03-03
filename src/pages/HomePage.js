@@ -9,7 +9,7 @@ function Home() {
     <div>
       <Header />
       <Featured />
-      <List title="Sports" />
+      <List title="Slasher" />
       <List title="Action" />
       <Footer />
     </div>

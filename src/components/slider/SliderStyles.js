@@ -5,18 +5,18 @@ export const CardsContainer = styled.div`
   display: flex;
   gap: 10px;
   margin-top: 10px;
-  /* overflow: hidden; */
   position: relative;
   transition: all 0.6s ease;
 `;
 
 export const Image = styled.img`
-  width: 150px;
-  height: 200px;
+  min-width: 150px;
+  max-height: 200px;
   cursor: pointer;
-  border: 2px solid transparent;
+  border-bottom: 2px solid transparent;
   object-fit: cover;
   transition: all 0.3s ease;
+  padding-bottom: 5px;
 
   &:hover {
     border-color: #fd7702;

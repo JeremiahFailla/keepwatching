@@ -43,6 +43,9 @@ const Login = () => {
         if (errorMessage === "Firebase: Error (auth/wrong-password).") {
           setError("Wrong Password");
         }
+        if (errorMessage === "Firebase: Error (auth/internal-error).") {
+          setError("Wrong Password");
+        }
         if (errorMessage === "Firebase: Error (auth/user-not-found).") {
           setError("Account Could not Be Found");
         }

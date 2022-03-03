@@ -13,11 +13,14 @@ export const Card = styled.div`
   border-radius: 5px;
   background: #003f7d;
   box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.25);
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 200px;
   padding: 1.5rem;
   cursor: pointer;
+  /* width: 200px; */
 
   &:hover {
     box-shadow: inset 0px 0px 20px 5px #ff5003;
@@ -36,6 +39,7 @@ export const Title = styled.p`
 
 export const Image = styled.img`
   object-fit: cover;
-  width: 150px;
+  min-width: 150px;
   height: 250px;
+  justify-self: center;
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Tab = styled.div`
   padding-left: 3rem;
   flex-grow: 1;
+  overflow: scroll;
 `;
 
 export const Title = styled.p`
@@ -40,6 +41,7 @@ export const Reset = styled.p`
   color: red;
   margin-top: 1rem;
   cursor: pointer;
+  text-align: center;
 `;
 
 export const SubmitButton = styled.button`
@@ -60,11 +62,28 @@ export const SubmitButton = styled.button`
   }
 `;
 
+export const ErrorContainer = styled.div`
+  position: relative;
+  width: 375px;
+`;
+
+export const Error = styled.p`
+  font-size: 0.9rem;
+  text-align: center;
+  color: black;
+  background: red;
+  padding: 5px;
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+`;
+
 // ----------- Watch List Tab --------------------
 
 export const List = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 250px);
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 `;
 
@@ -96,6 +115,7 @@ export const Container = styled.div`
 export const ContentTitle = styled.p`
   font-size: 1rem;
   margin-bottom: 1rem;
+  text-align: center;
 `;
 
 export const RemoveButton = styled.button`
@@ -122,16 +142,39 @@ export const ReviewTitle = styled.p`
   text-align: center;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #003f7d;
+  margin-right: 10px;
 `;
 
 export const ReviewContainer = styled.div`
   display: flex;
   border-bottom: 1px solid #003f7d;
   padding: 10px 0;
+  margin-right: 10px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+export const ReviewTitleButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    padding-top: 0.8rem;
+    margin: 0 auto;
+  }
 `;
 
 export const Review = styled.p`
   font-size: 1rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
   flex-grow: 1;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    margin-right: 0;
+  }
 `;

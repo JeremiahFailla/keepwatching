@@ -2,12 +2,20 @@ import styled from "styled-components";
 import { BsFillPersonFill } from "react-icons/bs";
 
 export const UserCardContainer = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, 770px);
+  /* display: grid;
+  grid-template-columns: minmax(0, 770px); */
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 120px;
+  align-items: center; */
+  width: 770px;
+  margin: 0 auto;
+  margin-top: 100px;
   padding: 1rem;
+
+  @media (max-width: 800px) {
+    margin: 100px 1rem;
+    width: auto;
+  }
 `;
 
 export const UserCard = styled.main`
@@ -15,6 +23,8 @@ export const UserCard = styled.main`
   background: #d4edff;
   padding: 3rem 1.5rem;
   display: flex;
+  max-height: 600px;
+  overflow: hidden;
 `;
 
 export const Tabs = styled.div`
@@ -27,7 +37,6 @@ export const Tabs = styled.div`
 `;
 
 export const Tab = styled.p`
-  flex-grow: 1;
   font-size: 1rem;
   border-top: 1px solid #003f7d;
   padding: 15px 5px;
@@ -55,10 +64,10 @@ export const Icon = styled(BsFillPersonFill)`
 export const Name = styled.p`
   color: #0081ff;
   font-size: 1rem;
+  white-space: nowrap;
 `;
 
 export const SignOut = styled.div`
-  flex-grow: 1;
   font-size: 1rem;
   border-top: 1px solid #003f7d;
   color: #fd7702;
