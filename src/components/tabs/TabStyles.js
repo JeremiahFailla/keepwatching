@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Tab = styled.div`
   padding-left: 3rem;
   flex-grow: 1;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const Title = styled.p`
@@ -16,8 +17,9 @@ export const Title = styled.p`
 // ------------Account Settings Tab------------------
 
 export const InputContainer = styled.div`
-  display: grid;
-  grid-template-columns: 150px 225px;
+  /* display: grid;
+  grid-template-columns: 150px 225px; */
+  display: flex;
   padding: 1rem 0;
 `;
 
@@ -25,6 +27,9 @@ export const Label = styled.label`
   font-size: 1rem;
   display: flex;
   align-items: center;
+  flex-grow: 1;
+  white-space: nowrap;
+  padding-right: 10px;
 `;
 
 export const Input = styled.input`
@@ -55,7 +60,6 @@ export const SubmitButton = styled.button`
   margin-top: 1.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
-  width: 375px;
 
   &:hover {
     background: #0080ff;
@@ -64,7 +68,7 @@ export const SubmitButton = styled.button`
 
 export const ErrorContainer = styled.div`
   position: relative;
-  width: 375px;
+  /* width: 375px; */
 `;
 
 export const Error = styled.p`

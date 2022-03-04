@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as Styled from "./LoginStyles";
 import Register from "../register/Register";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,9 @@ import {
   setPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
+import { doc, getDoc } from "firebase/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,9 +17,27 @@ const Login = () => {
   const [showRegisterAccount, setShowRegisterAccount] = useState(false);
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
+  const [valid, setValid] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const newUser = useSelector((state) => state.user);
+
+  const getFirebaseData = async () => {
+    const docRef = doc(db, "users", newUser?.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      console.log("Document data:", data);
+      // dispatch({
+      //   type: "SET_WATCHED_LIST_AND_REVIEWS",
+      //   watched: data.watched,
+      //   reviews: data.reviews,
+      // });
+    } else {
+      console.log("No such document!");
+    }
+  };
 
   const showRegisterPage = () => {
     setShowRegisterAccount(!showRegisterAccount);
@@ -34,7 +53,7 @@ const Login = () => {
         // Signed in
         const { user } = userAccount;
         dispatch({ type: "SET_USER", user: user });
-        return true;
+        setValid(true);
       })
       .catch((error) => {
         // error occured
@@ -53,7 +72,7 @@ const Login = () => {
           setError("Invalid Email");
         }
         setShowError(true);
-        return false;
+        setValid(false);
       });
   };
 
@@ -61,21 +80,24 @@ const Login = () => {
     e.preventDefault();
     setShowError(false);
 
-    const valid = validateLoginData();
-    console.log(valid);
-    // validate login data
-    if (!valid) return;
-
-    // Navigate to home page
-    navigate("/home", { replace: true });
+    validateLoginData();
   };
 
+  // useEffect(() => {
+  //   console.log(newUser);
+  //   if (newUser) {
+  //     navigate("/home", { replace: true });
+  //   }
+  // }, [newUser]);
+
   useEffect(() => {
-    console.log(newUser);
-    if (newUser) {
+    if (valid) {
+      // get user data from firebase
+      getFirebaseData();
+      // Navigate to home page
       navigate("/home", { replace: true });
     }
-  }, [newUser]);
+  }, [valid]);
 
   return (
     <Styled.Container>

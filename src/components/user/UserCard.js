@@ -12,10 +12,16 @@ const UserCard = () => {
   const [showSettings, setShowSettings] = useState(true);
   const [showWatchList, setShowWatchList] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
+
+  const [mobileNav, showMobileNav] = useState(false);
+
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(user);
+
+  const showMobileNavHandler = () => {
+    showMobileNav(!mobileNav);
+  };
 
   const showAccountSettings = () => {
     setShowWatchList(false);
@@ -50,16 +56,41 @@ const UserCard = () => {
     <Styled.UserCardContainer>
       <Styled.UserCard>
         <Styled.Tabs>
+          <Styled.More onClick={showMobileNavHandler} />
           <Styled.IconContainer>
             <Styled.Icon />
-            <Styled.Name>Welcome, {user?.displayName}</Styled.Name>
+            <Styled.Name showMore={mobileNav ? "1rem" : ".6rem"}>{`Welcome${
+              mobileNav ? "," : ""
+            } ${mobileNav ? user?.displayName : ""}`}</Styled.Name>
           </Styled.IconContainer>
-          <Styled.Tab onClick={showAccountSettings}>
-            Account Settings
+          <Styled.Tab
+            onClick={showAccountSettings}
+            showMore={mobileNav ? "1rem" : ".6rem"}
+          >
+            <Styled.AccountSettingsIcon />
+            {`${mobileNav ? "Account " : ""}Settings`}
           </Styled.Tab>
-          <Styled.Tab onClick={showAccountWatchList}>Watch List</Styled.Tab>
-          <Styled.Tab onClick={showAccountReviews}>Reviews</Styled.Tab>
-          <Styled.SignOut onClick={signOutUser}>Sign Out</Styled.SignOut>
+          <Styled.Tab
+            onClick={showAccountWatchList}
+            showMore={mobileNav ? "1rem" : ".6rem"}
+          >
+            <Styled.WatchListIcon />
+            Watch List
+          </Styled.Tab>
+          <Styled.Tab
+            onClick={showAccountReviews}
+            showMore={mobileNav ? "1rem" : ".6rem"}
+          >
+            <Styled.ReviewsIcon />
+            Reviews
+          </Styled.Tab>
+          <Styled.SignOut
+            onClick={signOutUser}
+            showMore={mobileNav ? "1rem" : ".6rem"}
+          >
+            <Styled.SignOutIcon />
+            Sign Out
+          </Styled.SignOut>
         </Styled.Tabs>
         {showSettings && <AccountSettingsTab user={user} />}
         {showWatchList && <WatchListTab />}

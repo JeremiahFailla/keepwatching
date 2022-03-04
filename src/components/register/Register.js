@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Styled from "./../login/LoginStyles";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,8 +7,9 @@ import {
   browserSessionPersistence,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 import { useDispatch } from "react-redux";
+import { doc, setDoc } from "firebase/firestore";
 
 const Register = ({ showLogin }) => {
   const [displayName, setDisplayName] = useState("");
@@ -28,6 +29,7 @@ const Register = ({ showLogin }) => {
       .then((userAccount) => {
         // Account created and Signed in
         const { user } = userAccount;
+        setFirebaseData(user);
         dispatch({ type: "SET_USER", user: user });
         return updateProfile(user, {
           displayName: displayName,
@@ -35,7 +37,9 @@ const Register = ({ showLogin }) => {
       })
       .then(() => {
         dispatch({ type: "SET_USER_DISPLAYNAME", displayName: displayName });
-        return true;
+
+        // Navigate to home page
+        navigate("/home", { replace: true });
       })
       .catch((error) => {
         // error occured
@@ -49,12 +53,32 @@ const Register = ({ showLogin }) => {
           setError("Invalid Email");
           setShowError(true);
         }
-        return false;
+        if (
+          errorMessage ===
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
+        ) {
+          setError("Password must be at least 6 characters");
+          setShowError(true);
+        }
       });
+  };
+
+  const setFirebaseData = async (user) => {
+    console.log(user);
+    try {
+      const docRef = doc(db, "users", user?.uid);
+      await setDoc(docRef, {
+        watched: [],
+        reviews: [],
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   const createAccount = (e) => {
     e.preventDefault();
+
     setShowError(false);
     // Create Account
     if (!displayName) {
@@ -62,14 +86,7 @@ const Register = ({ showLogin }) => {
       setShowError(true);
       return;
     }
-    if (!validateLoginData()) return;
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters");
-      setShowError(true);
-      return;
-    }
-    // Navigate to home page
-    navigate("/home", { replace: true });
+    validateLoginData();
   };
 
   return (

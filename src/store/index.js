@@ -52,6 +52,12 @@ const reducer = (state = intialState, action) => {
           [title]: action.content,
         },
       };
+    case "SET_WATCHED_LIST_AND_REVIEWS":
+      return {
+        ...state,
+        watchedList: [...action.watched],
+        reviews: [...action.reviews],
+      };
     case "SET_WATCHED_LIST":
       return {
         ...state,
