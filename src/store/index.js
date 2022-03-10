@@ -7,6 +7,7 @@ const intialState = {
   content: {},
   reviews: [],
   watchedList: [],
+  allReviews: [],
 };
 
 const reducer = (state = intialState, action) => {
@@ -66,6 +67,22 @@ const reducer = (state = intialState, action) => {
     case "SET_REVIEWS":
       return {
         ...state,
+        reviews: [...state.reviews, action.review],
+      };
+    case "SET_ALL_REVIEWS":
+      return {
+        ...state,
+        allReviews: [...action.reviews],
+      };
+    case "ADD_REVIEW_TO_ALL":
+      return {
+        ...state,
+        allReviews: [...state.allReviews, action.review],
+      };
+    case "ADD_TO_BOTH_REVIEWS":
+      return {
+        ...state,
+        allReviews: [...state.allReviews, action.review],
         reviews: [...state.reviews, action.review],
       };
     default:

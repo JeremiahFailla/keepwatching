@@ -6,6 +6,7 @@ export const Container = styled.div`
   max-width: 1220px;
   margin: 2rem auto;
   border-radius: 2px;
+  min-height: 256px;
 `;
 
 export const Title = styled.span`

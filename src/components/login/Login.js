@@ -17,23 +17,22 @@ const Login = () => {
   const [showRegisterAccount, setShowRegisterAccount] = useState(false);
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
-  const [valid, setValid] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const newUser = useSelector((state) => state.user);
+  // const newUser = useSelector((state) => state.user);
 
-  const getFirebaseData = async () => {
-    const docRef = doc(db, "users", newUser?.uid);
+  const getFirebaseData = async (user) => {
+    const docRef = doc(db, "users", user?.uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
       console.log("Document data:", data);
-      // dispatch({
-      //   type: "SET_WATCHED_LIST_AND_REVIEWS",
-      //   watched: data.watched,
-      //   reviews: data.reviews,
-      // });
+      dispatch({
+        type: "SET_WATCHED_LIST_AND_REVIEWS",
+        watched: data.watched,
+        reviews: data.reviews,
+      });
     } else {
       console.log("No such document!");
     }
@@ -53,7 +52,10 @@ const Login = () => {
         // Signed in
         const { user } = userAccount;
         dispatch({ type: "SET_USER", user: user });
-        setValid(true);
+        // get user data from firebase
+        getFirebaseData(user);
+        // Navigate to home page
+        navigate("/home", { replace: true });
       })
       .catch((error) => {
         // error occured
@@ -72,7 +74,6 @@ const Login = () => {
           setError("Invalid Email");
         }
         setShowError(true);
-        setValid(false);
       });
   };
 
@@ -89,15 +90,6 @@ const Login = () => {
   //     navigate("/home", { replace: true });
   //   }
   // }, [newUser]);
-
-  useEffect(() => {
-    if (valid) {
-      // get user data from firebase
-      getFirebaseData();
-      // Navigate to home page
-      navigate("/home", { replace: true });
-    }
-  }, [valid]);
 
   return (
     <Styled.Container>

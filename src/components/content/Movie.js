@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Reviews from "../reviews/Reviews";
 import * as Styled from "./Styles";
 
 const Movie = (props) => {
@@ -60,6 +61,7 @@ const Movie = (props) => {
           </Styled.DataContainer>
         </div>
       </Styled.Container>
+      <Reviews id={props.item.id} />
     </Styled.Card>
   );
 };

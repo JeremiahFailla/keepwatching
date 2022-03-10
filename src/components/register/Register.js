@@ -20,6 +20,19 @@ const Register = ({ showLogin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const setFirebaseData = async (user) => {
+    console.log(user);
+    try {
+      const docRef = doc(db, "users", user?.uid);
+      await setDoc(docRef, {
+        watched: [],
+        reviews: [],
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const validateLoginData = () => {
     // create new user on firebase
     setPersistence(auth, browserSessionPersistence)
@@ -61,19 +74,6 @@ const Register = ({ showLogin }) => {
           setShowError(true);
         }
       });
-  };
-
-  const setFirebaseData = async (user) => {
-    console.log(user);
-    try {
-      const docRef = doc(db, "users", user?.uid);
-      await setDoc(docRef, {
-        watched: [],
-        reviews: [],
-      });
-    } catch (err) {
-      console.log(err.message);
-    }
   };
 
   const createAccount = (e) => {
