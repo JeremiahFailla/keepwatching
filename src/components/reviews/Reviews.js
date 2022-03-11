@@ -7,7 +7,9 @@ import { db } from "./../../firebase/firebase";
 const Reviews = ({ id }) => {
   const user = useSelector((state) => state.user);
   const allReviews = useSelector((state) => state.allReviews);
+
   const [review, setReview] = useState();
+  const [reviewsToShow, setReviewsToShow] = useState([]);
   const dispatch = useDispatch();
 
   const addReview = async (e) => {
@@ -31,7 +33,11 @@ const Reviews = ({ id }) => {
   };
 
   useEffect(() => {
-    console.log(allReviews);
+    setReviewsToShow(
+      allReviews.map((r) => {
+        if (r.id === id) return r;
+      })
+    );
   }, [allReviews]);
 
   return (
@@ -45,22 +51,19 @@ const Reviews = ({ id }) => {
         />
       </Styled.ReviewInputContainer>
       <Styled.ReviewsContainer>
-        {allReviews.length === 0 && (
+        {reviewsToShow.length === 0 && (
           <Styled.NoReviews>No Reviews</Styled.NoReviews>
         )}
-        {allReviews.length > 0 &&
-          allReviews.map((r) => {
-            if (r.id === id)
-              return (
-                <Styled.Review key={Math.random() * 1000}>
-                  <Styled.IconNameContainer>
-                    <Styled.Icon />
-                    <Styled.Name>{r.name}</Styled.Name>
-                  </Styled.IconNameContainer>
-                  <Styled.Wording>{r.review}</Styled.Wording>
-                </Styled.Review>
-              );
-          })}
+        {reviewsToShow.length > 0 &&
+          reviewsToShow.map((r) => (
+            <Styled.Review key={Math.random() * 1000}>
+              <Styled.IconNameContainer>
+                <Styled.Icon />
+                <Styled.Name>{r.name}</Styled.Name>
+              </Styled.IconNameContainer>
+              <Styled.Wording>{r.review}</Styled.Wording>
+            </Styled.Review>
+          ))}
       </Styled.ReviewsContainer>
     </Styled.Container>
   );

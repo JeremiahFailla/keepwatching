@@ -70,9 +70,15 @@ const reducer = (state = intialState, action) => {
         reviews: [...state.reviews, action.review],
       };
     case "SET_ALL_REVIEWS":
+      const reviews = [];
+      action.querySnapshot.forEach((doc) => reviews.push(doc.data()));
+      const userReviews = reviews.filter(
+        (review) => review.userId === state.user.uid
+      );
       return {
         ...state,
-        allReviews: [...action.reviews],
+        allReviews: [...reviews],
+        reviews: [...userReviews],
       };
     case "ADD_REVIEW_TO_ALL":
       return {
@@ -82,8 +88,8 @@ const reducer = (state = intialState, action) => {
     case "ADD_TO_BOTH_REVIEWS":
       return {
         ...state,
-        allReviews: [...state.allReviews, action.review],
-        reviews: [...state.reviews, action.review],
+        allReviews: [action.review, ...state.allReviews],
+        reviews: [action.review, ...state.reviews],
       };
     default:
       return state;

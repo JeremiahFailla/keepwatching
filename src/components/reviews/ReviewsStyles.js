@@ -77,4 +77,5 @@ export const Wording = styled.p`
 export const NoReviews = styled.p`
   text-align: center;
   color: white;
+  padding: 1.5rem 2rem 0;
 `;
