@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase/firebase";
 
 import Home from "./pages/HomePage";
@@ -14,6 +14,8 @@ import ViewMorePage from "./pages/ViewMorePage";
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  console.log(user);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -26,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={user ? <Home /> : <Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/account" element={<Account />} />
         <Route path="/content/:title" element={<SpecificContentPage />} />
