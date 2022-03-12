@@ -5,8 +5,9 @@ const intialState = {
   userFirebaseData: {},
   selectedContent: {},
   content: {},
+  watchList: [],
+  entertainmentWatched: [],
   reviews: [],
-  watchedList: [],
   allReviews: [],
 };
 
@@ -53,16 +54,33 @@ const reducer = (state = intialState, action) => {
           [title]: action.content,
         },
       };
-    case "SET_WATCHED_LIST_AND_REVIEWS":
+    case "SET_WATCH_LIST_AND_REVIEWS_AND_ENTERTAINMENT_WATCHED":
       return {
         ...state,
-        watchedList: [...action.watched],
+        watchedList: [...action.watchList],
         reviews: [...action.reviews],
+        entertainmentWatched: [...action.entertainmentWatched],
       };
-    case "SET_WATCHED_LIST":
+    case "SET_WATCH_LIST":
       return {
         ...state,
-        watchedList: [...state.watchedList, action.content],
+        watchList: [action.watchList, ...state.watchList],
+      };
+    case "REMOVE_FROM_WATCH_LIST":
+      const newList = state.watchList.filter(
+        (item) => action.watchList.id !== item.id
+      );
+      return {
+        ...state,
+        watchList: [...newList],
+      };
+    case "SET_ENTERTAINMENT_WATCHED":
+      return {
+        ...state,
+        entertainmentWatched: [
+          action.entertainmentWatched,
+          ...state.entertainmentWatched,
+        ],
       };
     case "SET_REVIEWS":
       return {

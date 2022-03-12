@@ -1,34 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import WatchedAndWatchListButtons from "../buttons/WatchedAndWatchListButtons";
 import Reviews from "../reviews/Reviews";
 import * as Styled from "./Styles";
 
 export const TVShow = (props) => {
-  const [onWatchList, setOnWatchList] = useState(false);
-  const [watched, setWatched] = useState(false);
   return (
     <Styled.Card>
       <Styled.Title>{props.item.title}</Styled.Title>
       <Styled.Container>
         <Styled.ImageContainer>
           <Styled.Image src={props.item.image.url} />
-          {!onWatchList && (
-            <Styled.AddToWatchListButton onClick={() => setOnWatchList(true)}>
-              Add to Watch List
-            </Styled.AddToWatchListButton>
-          )}
-          {onWatchList && (
-            <Styled.RemoveFromWatchListButton
-              onClick={() => setOnWatchList(false)}
-            >
-              Remove from Watch List
-            </Styled.RemoveFromWatchListButton>
-          )}
-          {!watched && (
-            <Styled.NotWatchedButton onClick={() => setWatched(true)}>
-              Not Watched
-            </Styled.NotWatchedButton>
-          )}
-          {watched && <Styled.WatchedButton>Watched</Styled.WatchedButton>}
+          <WatchedAndWatchListButtons item={props.item} />
         </Styled.ImageContainer>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Styled.DataContainer>

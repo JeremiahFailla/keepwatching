@@ -29,9 +29,10 @@ const Login = () => {
       const data = docSnap.data();
       console.log("Document data:", data);
       dispatch({
-        type: "SET_WATCHED_LIST_AND_REVIEWS",
-        watched: data.watched,
+        type: "SET_WATCH_LIST_AND_REVIEWS_AND_ENTERTAINMENT_WATCHED",
+        watchList: data.watchList,
         reviews: data.reviews,
+        entertainmentWatched: data.watched,
       });
     } else {
       console.log("No such document!");
