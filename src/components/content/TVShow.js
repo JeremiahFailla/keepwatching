@@ -51,7 +51,7 @@ export const TVShow = (props) => {
           )}
         </div>
       </Styled.Container>
-      <Reviews id={props.item.id} />
+      <Reviews id={props.item.id} title={props.item.title} />
     </Styled.Card>
   );
 };

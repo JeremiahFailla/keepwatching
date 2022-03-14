@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Styled from "./LoginStyles";
 import Register from "../register/Register";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import {
   browserSessionPersistence,
 } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
 
 const Login = () => {
@@ -19,7 +19,6 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const newUser = useSelector((state) => state.user);
 
   const getFirebaseData = async (user) => {
     const docRef = doc(db, "users", user?.uid);
@@ -84,13 +83,6 @@ const Login = () => {
 
     validateLoginData();
   };
-
-  // useEffect(() => {
-  //   console.log(newUser);
-  //   if (newUser) {
-  //     navigate("/home", { replace: true });
-  //   }
-  // }, [newUser]);
 
   return (
     <Styled.Container>

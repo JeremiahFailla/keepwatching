@@ -43,7 +43,7 @@ const Movie = (props) => {
           </Styled.DataContainer>
         </div>
       </Styled.Container>
-      <Reviews id={props.item.id} />
+      <Reviews id={props.item.id} title={props.item.title} />
     </Styled.Card>
   );
 };

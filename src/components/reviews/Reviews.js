@@ -4,12 +4,12 @@ import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { db } from "./../../firebase/firebase";
 
-const Reviews = ({ id }) => {
+const Reviews = ({ id, title }) => {
   const user = useSelector((state) => state.user);
   const allReviews = useSelector((state) => state.allReviews);
   const userReviews = useSelector((state) => state.reviews);
 
-  const [review, setReview] = useState();
+  const [review, setReview] = useState("");
   const [reviewsToShow, setReviewsToShow] = useState([]);
   const dispatch = useDispatch();
 
@@ -25,6 +25,7 @@ const Reviews = ({ id }) => {
       createDate: createDate,
       reviewId: reviewId,
       userId: user.uid,
+      title: title,
     });
 
     const userRef = doc(db, "users", user?.uid);
@@ -39,6 +40,7 @@ const Reviews = ({ id }) => {
             createDate: createDate,
             reviewId: reviewId,
             userId: user.uid,
+            title: title,
           },
           ...userReviews,
         ],

@@ -15,7 +15,6 @@ import ViewMorePage from "./pages/ViewMorePage";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(user);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

@@ -61,6 +61,12 @@ const reducer = (state = intialState, action) => {
         reviews: [...action.reviews],
         entertainmentWatched: [...action.entertainmentWatched],
       };
+    case "REMOVE_REVIEW":
+      return {
+        ...state,
+        reviews: [...action.newUserReviews],
+        allReviews: [...action.newAllReviews],
+      };
     case "SET_WATCH_LIST":
       return {
         ...state,
@@ -89,7 +95,10 @@ const reducer = (state = intialState, action) => {
       };
     case "SET_ALL_REVIEWS":
       const reviews = [];
-      action.querySnapshot.forEach((doc) => reviews.push(doc.data()));
+      action.querySnapshot.forEach((doc) => {
+        const data = { ...doc.data(), docId: doc.id };
+        reviews.push(data);
+      });
       const userReviews = reviews.filter(
         (review) => review.userId === state.user.uid
       );
