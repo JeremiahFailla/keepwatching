@@ -10,6 +10,7 @@ import {
 import { auth, db } from "../../firebase/firebase";
 import { useDispatch } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -54,6 +55,7 @@ const Login = () => {
         dispatch({ type: "SET_USER", user: user });
         // get user data from firebase
         getFirebaseData(user);
+
         // Navigate to home page
         navigate("/home", { replace: true });
       })
@@ -75,6 +77,10 @@ const Login = () => {
         }
         setShowError(true);
       });
+  };
+
+  const resetPasswordButton = async () => {
+    await sendPasswordResetEmail(auth, email);
   };
 
   const signIn = (e) => {
@@ -115,7 +121,15 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Styled.Label htmlFor="password">Password</Styled.Label>
+            <Styled.Label
+              style={{ display: "inline-block" }}
+              htmlFor="password"
+            >
+              Password
+            </Styled.Label>
+            <Styled.ForgotPasswordButton type="button">
+              Forgot Password
+            </Styled.ForgotPasswordButton>
             <Styled.Input
               type="password"
               name="password"
@@ -124,6 +138,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
             <Styled.Button>Let Watch</Styled.Button>
           </form>
         </Styled.Card>

@@ -57,7 +57,7 @@ const reducer = (state = intialState, action) => {
     case "SET_WATCH_LIST_AND_REVIEWS_AND_ENTERTAINMENT_WATCHED":
       return {
         ...state,
-        watchedList: [...action.watchList],
+        watchList: [...action.watchList],
         reviews: [...action.reviews],
         entertainmentWatched: [...action.entertainmentWatched],
       };
@@ -71,6 +71,11 @@ const reducer = (state = intialState, action) => {
       return {
         ...state,
         watchList: [action.watchList, ...state.watchList],
+      };
+    case "REMOVE_FROM_WATCH_LIST":
+      return {
+        ...state,
+        watchList: [...action.watchList],
       };
     case "REMOVE_FROM_WATCH_LIST":
       const newList = state.watchList.filter(

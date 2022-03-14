@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  color: red;
 `;
 
 export const Logo = styled.h1`
@@ -87,4 +88,16 @@ export const Error = styled.p`
   top: -35px;
   padding: 5px;
   color: #ffe600;
+`;
+
+export const ForgotPasswordButton = styled.button`
+  border: none;
+  outline: 0;
+  padding: 5px;
+  font-size: 0.8rem;
+  /* background: transparent; */
+  background: #ccc;
+  border-radius: 5px;
+  color: red;
+  cursor: pointer;
 `;
