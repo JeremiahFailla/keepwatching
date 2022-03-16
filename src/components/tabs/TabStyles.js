@@ -68,7 +68,7 @@ export const SubmitButton = styled.button`
 
 export const ErrorContainer = styled.div`
   position: relative;
-  /* width: 375px; */
+  width: 100%;
 `;
 
 export const Error = styled.p`

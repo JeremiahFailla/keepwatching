@@ -17,7 +17,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showRegisterAccount, setShowRegisterAccount] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -80,13 +82,25 @@ const Login = () => {
   };
 
   const resetPasswordButton = async () => {
-    await sendPasswordResetEmail(auth, email);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setShowSuccess(true);
+    } catch (err) {
+      console.log(err.message);
+      if (err.message === "Firebase: Error (auth/missing-email).") {
+        setError("Enter a valid email for password reset");
+      }
+      if (err.message === "Firebase: Error (auth/invalid-email).") {
+        setError("Enter a valid email for password reset");
+      }
+      setShowError(true);
+    }
   };
 
   const signIn = (e) => {
     e.preventDefault();
     setShowError(false);
-
+    setShowSuccess(false);
     validateLoginData();
   };
 
@@ -110,6 +124,9 @@ const Login = () => {
           </Styled.Description>
           <Styled.ErrorContainer>
             {showError && <Styled.Error>{error}</Styled.Error>}
+            {showSuccess && (
+              <Styled.Success>Reset Password Email Sent</Styled.Success>
+            )}
           </Styled.ErrorContainer>
           <form onSubmit={signIn}>
             <Styled.Label htmlFor="email">Email</Styled.Label>
@@ -121,15 +138,8 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Styled.Label
-              style={{ display: "inline-block" }}
-              htmlFor="password"
-            >
-              Password
-            </Styled.Label>
-            <Styled.ForgotPasswordButton type="button">
-              Forgot Password
-            </Styled.ForgotPasswordButton>
+            <Styled.Label htmlFor="password">Password</Styled.Label>
+
             <Styled.Input
               type="password"
               name="password"
@@ -137,8 +147,14 @@ const Login = () => {
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{ marginBottom: "2px" }}
             />
-
+            <Styled.ForgotPasswordButton
+              type="button"
+              onClick={resetPasswordButton}
+            >
+              Forgot Password
+            </Styled.ForgotPasswordButton>
             <Styled.Button>Let Watch</Styled.Button>
           </form>
         </Styled.Card>

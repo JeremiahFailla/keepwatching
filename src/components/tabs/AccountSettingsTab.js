@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import * as Styled from "./TabStyles";
 import { useDispatch } from "react-redux";
 import { auth } from "../../firebase/firebase";
-import {
-  updateProfile,
-  updateEmail,
-  sendPasswordResetEmail,
-} from "firebase/auth";
+import { updateProfile, updateEmail, updatePassword } from "firebase/auth";
+import Spinner from "./../spinner/Spinner";
 
 const AccountSettingsTab = ({ user }) => {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [error, showError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +22,14 @@ const AccountSettingsTab = ({ user }) => {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }, [loading]);
+
   const changeUserInfo = async (e) => {
     e.preventDefault();
     showError(false);
@@ -30,12 +38,25 @@ const AccountSettingsTab = ({ user }) => {
       showError(true);
       return;
     }
+    setLoading(true);
     try {
       await updateEmail(auth.currentUser, email);
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
-      await sendPasswordResetEmail(auth, email);
+      if (password === confirmPassword) {
+        await updatePassword(auth.currentUser, password);
+        setPassword("");
+        setConfirmPassword("");
+      }
+      if (password !== confirmPassword) {
+        setErrorMessage("New Password and Confirm Password don't make");
+        showError(true);
+      }
+      if (password.length < 6) {
+        setErrorMessage("Password must be at least 6 characters");
+        showError(true);
+      }
 
       dispatch({
         type: "SET_USER_INFO",
@@ -65,27 +86,46 @@ const AccountSettingsTab = ({ user }) => {
         }}
       >
         <Styled.Title>Account Settings</Styled.Title>
+        {loading && <Spinner />}
+
         <Styled.ErrorContainer>
-          {error && <Styled.Error>{errorMessage}</Styled.Error>}
+          {error && !loading && <Styled.Error>{errorMessage}</Styled.Error>}
         </Styled.ErrorContainer>
-        <form onSubmit={changeUserInfo}>
-          <Styled.InputContainer>
-            <Styled.Label>Display Name</Styled.Label>
-            <Styled.Input
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-            />
-          </Styled.InputContainer>
-          <Styled.InputContainer>
-            <Styled.Label>Email</Styled.Label>
-            <Styled.Input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Styled.InputContainer>
-          <Styled.Reset>Reset Password</Styled.Reset>
-          <Styled.SubmitButton>Save Changes</Styled.SubmitButton>
-        </form>
+
+        {!loading && (
+          <form onSubmit={changeUserInfo}>
+            <Styled.InputContainer>
+              <Styled.Label>Display Name</Styled.Label>
+              <Styled.Input
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+              />
+            </Styled.InputContainer>
+            <Styled.InputContainer>
+              <Styled.Label>Email</Styled.Label>
+              <Styled.Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Styled.InputContainer>
+            <Styled.InputContainer>
+              <Styled.Label>New Password</Styled.Label>
+              <Styled.Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Styled.InputContainer>
+            <Styled.InputContainer>
+              <Styled.Label>Confirm Password</Styled.Label>
+              <Styled.Input
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </Styled.InputContainer>
+
+            <Styled.SubmitButton>Save Changes</Styled.SubmitButton>
+          </form>
+        )}
       </div>
     </Styled.Tab>
   );

@@ -29,6 +29,7 @@ export const Description = styled.p`
   text-align: center;
   width: 100%;
   margin-bottom: 2.5rem;
+  color: black;
 `;
 
 export const Link = styled.span`
@@ -40,6 +41,7 @@ export const Label = styled.label`
   display: block;
   padding: 0 8px 5px;
   font-size: 1.2rem;
+  color: #0e559c;
 `;
 
 export const Input = styled.input`
@@ -90,14 +92,31 @@ export const Error = styled.p`
   color: #ffe600;
 `;
 
+export const Success = styled.p`
+  position: absolute;
+  width: 100%;
+  background: #4ee031;
+  font-size: 1.1rem;
+  text-align: center;
+  top: -35px;
+  padding: 5px;
+  color: #0f0e00ff;
+`;
+
 export const ForgotPasswordButton = styled.button`
   border: none;
   outline: 0;
   padding: 5px;
-  font-size: 0.8rem;
-  /* background: transparent; */
-  background: #ccc;
+  font-size: 0.7rem;
+  background: transparent;
+  /* background: #ccc; */
   border-radius: 5px;
-  color: red;
+  color: black;
   cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: white;
+  }
 `;
