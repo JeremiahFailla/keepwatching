@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Tab = styled.div`
-  padding-left: 3rem;
+  /* padding-left: 3rem; */
+  padding: 0 1rem;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -21,6 +22,12 @@ export const InputContainer = styled.div`
   grid-template-columns: 150px 225px; */
   display: flex;
   padding: 1rem 0;
+`;
+
+export const AccountDescription = styled.p`
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 `;
 
 export const Label = styled.label`
@@ -97,6 +104,7 @@ export const Content = styled.div`
   padding: 10px;
   border-radius: 2px;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background: #c0daec;

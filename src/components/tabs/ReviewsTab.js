@@ -43,7 +43,14 @@ const ReviewsTab = () => {
 
   return (
     <Styled.Tab>
-      <Styled.ReviewTitle>Reviews</Styled.ReviewTitle>
+      <Styled.ReviewTitle
+        style={userReviews.length === 0 && { borderColor: "transparent" }}
+      >
+        Reviews
+      </Styled.ReviewTitle>
+      {userReviews.length === 0 && (
+        <Styled.ContentTitle>You have no reviews</Styled.ContentTitle>
+      )}
       {userReviews.map((item) => (
         <Styled.ReviewContainer key={item.reviewId}>
           <Styled.Review>"{item.review}"</Styled.Review>

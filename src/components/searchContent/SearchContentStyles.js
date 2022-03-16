@@ -7,18 +7,16 @@ export const Container = styled.div`
   margin: 0 auto;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const Card = styled.div`
   border-radius: 5px;
   background: #003f7d;
   box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.25);
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
   display: grid;
-  grid-template-columns: 200px;
-  padding: 1.5rem;
+  grid-template-columns: 170px;
+  padding: 1rem;
   cursor: pointer;
   /* width: 200px; */
 
@@ -39,7 +37,7 @@ export const Title = styled.p`
 
 export const Image = styled.img`
   object-fit: cover;
-  min-width: 150px;
-  height: 250px;
+  min-width: 120px;
+  height: 220px;
   justify-self: center;
 `;

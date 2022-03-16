@@ -3,12 +3,13 @@ import * as Styled from "./TabStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 const WatchListTab = () => {
   const watchList = useSelector((state) => state.watchList);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(watchList);
+  const navigate = useNavigate();
 
   const removeFromWatchList = async (item) => {
     const newWatchList = watchList.filter((i) => i.id !== item.id);
@@ -27,6 +28,11 @@ const WatchListTab = () => {
     );
   };
 
+  const showContent = (item) => {
+    dispatch({ type: "SET_SELECTED_CONTENT", content: item });
+    navigate(`/content/${item.title.toLowerCase().replaceAll(" ", "-")}`);
+  };
+
   return (
     <Styled.Tab>
       <Styled.Title>Watch List</Styled.Title>
@@ -35,7 +41,10 @@ const WatchListTab = () => {
       )}
       <Styled.List>
         {watchList.map((item) => (
-          <Styled.Content key={Math.random() * 10000}>
+          <Styled.Content
+            key={Math.random() * 10000}
+            onClick={() => showContent(item)}
+          >
             <Styled.Image src={item.image.url} />
             <Styled.Container>
               <Styled.ContentTitle>{item.title}</Styled.ContentTitle>

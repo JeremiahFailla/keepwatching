@@ -33,18 +33,18 @@ const AccountSettingsTab = ({ user }) => {
   const changeUserInfo = async (e) => {
     e.preventDefault();
     showError(false);
-    if (!displayName) {
-      setErrorMessage("Display Name Required");
-      showError(true);
-      return;
-    }
     setLoading(true);
     try {
-      await updateEmail(auth.currentUser, email);
-      await updateProfile(auth.currentUser, {
-        displayName: displayName,
-      });
-      if (password === confirmPassword) {
+      if (user.email !== email && email.length > 0) {
+        await updateEmail(auth.currentUser, email);
+      }
+      if (user.displayName !== displayName && displayName.length > 0) {
+        await updateProfile(auth.currentUser, {
+          displayName: displayName,
+        });
+      }
+
+      if (password === confirmPassword && password.length > 0) {
         await updatePassword(auth.currentUser, password);
         setPassword("");
         setConfirmPassword("");
@@ -53,7 +53,7 @@ const AccountSettingsTab = ({ user }) => {
         setErrorMessage("New Password and Confirm Password don't make");
         showError(true);
       }
-      if (password.length < 6) {
+      if (password.length < 6 && password.length > 0) {
         setErrorMessage("Password must be at least 6 characters");
         showError(true);
       }
@@ -86,6 +86,10 @@ const AccountSettingsTab = ({ user }) => {
         }}
       >
         <Styled.Title>Account Settings</Styled.Title>
+        <Styled.AccountDescription>
+          If you don't want to change specific information, leave input field as
+          is or leave it blank.
+        </Styled.AccountDescription>
         {loading && <Spinner />}
 
         <Styled.ErrorContainer>

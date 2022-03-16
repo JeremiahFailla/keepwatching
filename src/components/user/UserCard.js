@@ -60,8 +60,8 @@ const UserCard = () => {
           <Styled.IconContainer>
             <Styled.Icon />
             <Styled.Name showMore={mobileNav ? "1rem" : ".6rem"}>{`Welcome${
-              mobileNav ? "," : ""
-            } ${mobileNav ? user?.displayName : ""}`}</Styled.Name>
+              !mobileNav ? "," : ""
+            } ${!mobileNav ? user?.displayName : ""}`}</Styled.Name>
           </Styled.IconContainer>
           <Styled.Tab
             onClick={showAccountSettings}

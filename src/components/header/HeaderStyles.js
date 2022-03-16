@@ -19,6 +19,10 @@ export const Nav = styled.nav`
   max-width: 1800px;
   margin: 0 auto;
   position: relative;
+
+  @media (max-width: 600px) {
+    justify-content: space-between;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -32,6 +36,21 @@ export const SearchForm = styled.form`
   margin: 0 auto;
   min-width: 0;
   padding: 0 25px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+export const MobileSearchForm = styled.form`
+  display: none;
+  margin: 0 auto;
+  min-width: 0;
+  padding: 0 25px;
+
+  @media (max-width: 600px) {
+    display: flex;
+  }
 `;
 
 export const SearchInput = styled.input`

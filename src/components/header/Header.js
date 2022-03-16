@@ -69,6 +69,17 @@ const Header = () => {
           </React.Fragment>
         )}
       </Styled.Nav>
+      <Styled.MobileSearchForm onSubmit={browse}>
+        <Styled.SearchInput
+          aria-label="search"
+          value={searchInput}
+          style={{ flexGrow: 1 }}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <Styled.SearchButton style={{ flexGrow: 0 }}>
+          Browse
+        </Styled.SearchButton>
+      </Styled.MobileSearchForm>
     </Styled.Header>
   );
 };
