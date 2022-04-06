@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 export const SearchContent = ({ content }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(content);
 
   const showContent = (item) => {
     dispatch({ type: "SET_SELECTED_CONTENT", content: item });

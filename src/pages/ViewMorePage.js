@@ -32,11 +32,12 @@ const ViewMorePage = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [title]);
 
   useEffect(() => {
     console.log(content);
-  }, [content]);
+    console.log(title);
+  }, [content, title]);
 
   return (
     <div

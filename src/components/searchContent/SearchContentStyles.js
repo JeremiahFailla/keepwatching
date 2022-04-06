@@ -37,7 +37,7 @@ export const Title = styled.p`
 
 export const Image = styled.img`
   object-fit: cover;
-  min-width: 120px;
+  width: 150px;
   height: 220px;
   justify-self: center;
 `;
