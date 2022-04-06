@@ -8,11 +8,7 @@ import { Footer } from "../components/footer/Footer";
 
 const SpecificContentPage = () => {
   const item = useSelector((state) => state.selectedContent);
-  const params = useParams();
 
-  useEffect(() => {
-    console.log(item, params);
-  }, [item, params]);
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}

@@ -9,7 +9,10 @@ const Movie = (props) => {
       <Styled.Title>{props.item.title}</Styled.Title>
       <Styled.Container>
         <Styled.ImageContainer>
-          <Styled.Image src={props.item.image.url} />
+          <Styled.Image
+            src={props.item.image ? props.item.image.url : ""}
+            alt={props.item.title}
+          />
           <WatchedAndWatchListButtons item={props.item} />
         </Styled.ImageContainer>
         <div style={{ display: "flex", flexDirection: "column" }}>

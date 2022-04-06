@@ -21,7 +21,10 @@ export const SearchContent = ({ content }) => {
               onClick={() => showContent(item)}
             >
               <Styled.Title>{item.title}</Styled.Title>
-              <Styled.Image src={item.image.url} />
+              <Styled.Image
+                src={item.image ? item.image.url : ""}
+                alt={item.title}
+              />
             </Styled.Card>
           );
         }

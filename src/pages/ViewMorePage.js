@@ -34,11 +34,6 @@ const ViewMorePage = () => {
       });
   }, [title]);
 
-  useEffect(() => {
-    console.log(content);
-    console.log(title);
-  }, [content, title]);
-
   return (
     <div
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}

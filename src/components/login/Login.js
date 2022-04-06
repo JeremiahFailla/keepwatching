@@ -29,7 +29,6 @@ const Login = () => {
 
     if (docSnap.exists()) {
       const data = docSnap.data();
-      console.log("Document data:", data);
       dispatch({
         type: "SET_WATCH_LIST_AND_REVIEWS_AND_ENTERTAINMENT_WATCHED",
         watchList: data.watchList,

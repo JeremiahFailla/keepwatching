@@ -51,7 +51,6 @@ export const List = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setContent(data.results);
-        console.log(data.results);
         setLoading(false);
       })
       .catch((err) => {
